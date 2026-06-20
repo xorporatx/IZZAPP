@@ -551,6 +551,10 @@ function MultiEmployeeForm({ data, setData, errors }: {
   const employerCost = totalNet * 1.25;
   const total = totalNet + employerCost;
 
+  // Grid column template (RTL visual order): [delete 40px] [hours 1fr] [rate 1fr] [name 2fr]
+  // In dir="ltr" DOM: name(2fr) | rate(1fr) | hours(1fr) | delete(40px)
+  const gridCols = "2fr 1fr 1fr 40px";
+
   return (
     <FormCard>
       {/* Shared date */}
@@ -560,61 +564,128 @@ function MultiEmployeeForm({ data, setData, errors }: {
         error={errors.date}
       />
 
-      {/* Employee rows */}
+      {/* Shared column header row — dir="rtl" so col1=rightmost=name */}
+      {data.employees.length > 0 && (
+        <div
+          dir="rtl"
+          style={{
+            display: "grid",
+            gridTemplateColumns: gridCols,
+            gap: 8,
+            paddingBottom: 4,
+          }}
+        >
+          <span style={{ fontFamily: font, fontSize: 12, color: "#737373" }}>שם העובד</span>
+          <span style={{ fontFamily: font, fontSize: 12, color: "#737373" }}>תעריף</span>
+          <span style={{ fontFamily: font, fontSize: 12, color: "#737373" }}>שעות</span>
+          <span />
+        </div>
+      )}
+
+      {/* Employee rows — dir="rtl" so col1=rightmost=name */}
       {data.employees.map((emp, i) => (
         <div
           key={i}
+          dir="rtl"
           style={{
-            border: "1px solid #e5e5e5",
-            borderRadius: 10,
-            padding: 12,
-            display: "flex",
-            flexDirection: "column",
-            gap: 10,
+            display: "grid",
+            gridTemplateColumns: gridCols,
+            gap: 8,
+            alignItems: "center",
           }}
         >
-          <div style={{ display: "flex", flexDirection: "row-reverse", justifyContent: "space-between", alignItems: "center" }}>
-            <span style={{ fontFamily: font, fontSize: 13, fontWeight: 500, color: "#262626" }}>
-              {`עובד ${i + 1}`}
-            </span>
-            <button
-              onClick={() => removeEmployee(i)}
-              style={{
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                padding: 4,
-                color: "#dc2626",
-                display: "flex",
-                alignItems: "center",
-              }}
-              aria-label="הסר עובד"
-            >
-              <Trash2 style={{ width: 16, height: 16 }} />
-            </button>
-          </div>
-          <FSelect
+          {/* שם העובד — name (widest, rightmost visually) */}
+          <input
+            type="text"
             placeholder="שם העובד"
             value={emp.name}
-            onChange={(v) => updateEmployee(i, "name", v)}
-            options={EMPLOYEES}
+            onChange={(e) => updateEmployee(i, "name", e.target.value)}
+            style={{
+              height: "var(--input-height)",
+              border: "1px solid #e5e5e5",
+              borderRadius: 8,
+              padding: "0 10px",
+              fontFamily: font,
+              fontSize: 13,
+              color: "#262626",
+              textAlign: "right",
+              direction: "rtl",
+              width: "100%",
+              boxSizing: "border-box",
+              outline: "none",
+              background: "white",
+              boxShadow: "0px 1px 2px rgba(0,0,0,0.05)",
+            }}
           />
-          <FieldRow>
-            <FInput
-              label="שעות"
-              type="number"
-              inputMode="decimal"
-              value={emp.hours}
-              onChange={(e) => updateEmployee(i, "hours", e.target.value)}
-            />
-            <FInput
-              label="תעריף/שעה"
-              type="number"
-              inputMode="decimal"
-              value={emp.hourlyRate}
-              onChange={(e) => updateEmployee(i, "hourlyRate", e.target.value)}
-            />
-          </FieldRow>
+
+          {/* תעריף/שעה */}
+          <input
+            type="number"
+            inputMode="decimal"
+            placeholder="₪"
+            value={emp.hourlyRate}
+            onChange={(e) => updateEmployee(i, "hourlyRate", e.target.value)}
+            style={{
+              height: "var(--input-height)",
+              border: "1px solid #e5e5e5",
+              borderRadius: 8,
+              padding: "0 10px",
+              fontFamily: font,
+              fontSize: 13,
+              color: "#262626",
+              textAlign: "right",
+              direction: "ltr",
+              width: "100%",
+              boxSizing: "border-box",
+              outline: "none",
+              background: "white",
+              boxShadow: "0px 1px 2px rgba(0,0,0,0.05)",
+            }}
+          />
+
+          {/* שעות */}
+          <input
+            type="number"
+            inputMode="decimal"
+            placeholder="0"
+            value={emp.hours}
+            onChange={(e) => updateEmployee(i, "hours", e.target.value)}
+            style={{
+              height: "var(--input-height)",
+              border: "1px solid #e5e5e5",
+              borderRadius: 8,
+              padding: "0 10px",
+              fontFamily: font,
+              fontSize: 13,
+              color: "#262626",
+              textAlign: "center",
+              width: "100%",
+              boxSizing: "border-box",
+              outline: "none",
+              background: "white",
+              boxShadow: "0px 1px 2px rgba(0,0,0,0.05)",
+            }}
+          />
+
+          {/* Delete */}
+          <button
+            onClick={() => removeEmployee(i)}
+            aria-label="הסר עובד"
+            style={{
+              width: 40,
+              height: 40,
+              borderRadius: 8,
+              background: "#fee2e2",
+              border: "none",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexShrink: 0,
+            }}
+          >
+            <Trash2 style={{ width: 15, height: 15, color: "#dc2626" }} />
+          </button>
         </div>
       ))}
 
@@ -642,7 +713,7 @@ function MultiEmployeeForm({ data, setData, errors }: {
         הוסף עובד
       </button>
 
-      {/* Summary */}
+      {/* Totals summary */}
       {data.employees.length > 0 && (
         <div
           style={{
