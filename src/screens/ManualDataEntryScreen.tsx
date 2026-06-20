@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useForm, useFieldArray } from "react-hook-form";
 import { X, Calendar, ChevronDown, Plus, Trash2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 // ── Design tokens ─────────────────────────────────────────────────────────────
 
@@ -92,7 +90,7 @@ type FDateProps = {
   error?: string;
 };
 
-function FDate({ label, value, onChange, placeholder = "תאריך*", error }: FDateProps) {
+function FDate({ label, value, onChange, error }: FDateProps) {
   return (
     <Field label={label} error={error}>
       <div style={{ position: "relative" }}>
