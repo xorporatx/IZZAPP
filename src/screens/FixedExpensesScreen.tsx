@@ -214,7 +214,7 @@ export function FixedExpensesScreen() {
               style={{
                 display: "flex",
                 borderBottom: "1px solid #e5e5e5",
-                padding: "0 8px",
+                padding: "0 24px",
                 height: 40,
                 alignItems: "center",
               }}
@@ -236,7 +236,7 @@ export function FixedExpensesScreen() {
                   display: "flex",
                   alignItems: "center",
                   height: 52,
-                  padding: "0 8px",
+                  padding: "0 24px",
                   borderBottom: idx < expenses.length - 1 ? "1px solid #e5e5e5" : "none",
                 }}
               >
@@ -267,7 +267,7 @@ export function FixedExpensesScreen() {
                 display: "flex",
                 alignItems: "center",
                 height: 52,
-                padding: "0 8px",
+                padding: "0 24px",
                 borderTop: "1px solid #e5e5e5",
               }}
             >
