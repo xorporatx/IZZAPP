@@ -37,7 +37,7 @@ export function PhoneVerificationScreen() {
           display: "flex",
           width: "360px",
           height: "56px",
-          padding: "0 20px",
+          padding: "0 var(--page-horizontal-padding)",
           justifyContent: "space-between",
           alignItems: "center",
           backgroundColor: "white",
@@ -66,7 +66,7 @@ export function PhoneVerificationScreen() {
       </div>
 
       {/* Main content */}
-      <div className="flex flex-1 flex-col items-center gap-6 px-5 py-8">
+      <div className="flex flex-1 flex-col items-center gap-6 px-4 py-8">
         {/* Coin illustration */}
         <div className="flex h-40 w-40 items-center justify-center">
           <img src={CoinImage} alt="Coin illustration" className="h-full w-full" />
@@ -115,7 +115,7 @@ export function PhoneVerificationScreen() {
             placeholder="+972"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            className="h-12 text-center text-base"
+            className="h-10 text-center text-base"
             inputMode="tel"
           />
         </div>

@@ -11,7 +11,7 @@ export function CompletionScreen() {
   };
 
   return (
-    <div dir="rtl" className="flex min-h-svh flex-col items-center justify-center bg-white px-6">
+    <div dir="rtl" className="flex min-h-svh flex-col items-center justify-center bg-white px-4">
       {/* Celebration anchor — future confetti/animation can be injected here */}
       <div id="celebration-anchor" className="flex flex-col items-center gap-6 w-full max-w-sm">
 

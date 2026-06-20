@@ -4,6 +4,13 @@
 
 @layer base {
   :root {
+    /* ── IzzBizz Layout & Form Tokens ──────────────────────────────────── */
+    --input-height: 40px;
+    --page-horizontal-padding: 16px;
+    --field-gap: 16px;      /* vertical gap between form fields */
+    --label-gap: 8px;       /* gap between label and its input */
+    --section-gap: 24px;    /* gap between form sections */
+
     /* IzzBizz Design System — Primary brand green (emerald-700 #047857) */
     --primary: 161 94% 24%;
     --primary-foreground: 149 80% 90%;

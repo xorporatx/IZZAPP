@@ -12,7 +12,7 @@ export function WelcomeScreen() {
     <div
       dir="rtl"
       className={cn(
-        "flex h-full min-h-svh w-full flex-col items-center bg-white px-6 py-10"
+        "flex h-full min-h-svh w-full flex-col items-center bg-white px-4 py-10"
       )}
     >
       {/* Status bar simulation and top padding */}

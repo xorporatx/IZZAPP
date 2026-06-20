@@ -117,7 +117,7 @@ export function IntegrationsScreen() {
       />
 
       {/* Content */}
-      <div className="flex flex-1 flex-col gap-6 overflow-y-auto px-5 pb-32 pt-6">
+      <div className="flex flex-1 flex-col gap-6 overflow-y-auto px-4 pb-32 pt-6">
 
         {/* Header */}
         <div className="flex flex-col gap-1 text-center">
@@ -156,7 +156,7 @@ export function IntegrationsScreen() {
       </div>
 
       {/* Sticky bottom button */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white px-[23px] py-[30px]">
+      <div className="fixed bottom-0 left-0 right-0 bg-white px-4 py-4">
         <Button
           onClick={() => navigate("/onboarding/completion")}
           className="h-10 w-full bg-emerald-600 text-white hover:bg-emerald-700"

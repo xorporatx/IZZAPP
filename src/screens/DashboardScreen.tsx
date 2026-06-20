@@ -116,7 +116,7 @@ function KpiCard({ title, value, subtitle, subtitleColor = "#737373", valueColor
         borderRadius: 10,
         border: "1px solid #f9fafb",
         boxShadow: "0px 1px 3px rgba(0,0,0,0.1), 0px 1px 2px -1px rgba(0,0,0,0.1)",
-        padding: "0 24px",
+        padding: "0 16px",
         height: 62,
         display: "flex",
         flexDirection: "row",
@@ -287,7 +287,7 @@ export function DashboardScreen() {
         dir="ltr"
         style={{
           background: "white",
-          padding: "20px",
+          padding: "var(--page-horizontal-padding)",
           display: "flex",
           alignItems: "center",
           gap: 8,
@@ -360,7 +360,7 @@ export function DashboardScreen() {
            dir="ltr": tabs left, calendar pinned to far right via marginLeft:auto */}
       <div
         dir="ltr"
-        style={{ background: "white", padding: "0 20px 12px", display: "flex", alignItems: "center", gap: 10 }}
+        style={{ background: "white", padding: "0 var(--page-horizontal-padding) 12px", display: "flex", alignItems: "center", gap: 10 }}
       >
         {/* LEFT side: tabs — DOM order 12חודשים→היום so visually rightmost = היום */}
         <div style={{ display: "flex", gap: 4 }}>
@@ -407,7 +407,7 @@ export function DashboardScreen() {
       </div>
 
       {/* ── Scrollable content ────────────────────────────────────────────── */}
-      <div style={{ flex: 1, overflowY: "auto", padding: "12px 20px", paddingBottom: "calc(96px + env(safe-area-inset-bottom, 0px))" }}>
+      <div style={{ flex: 1, overflowY: "auto", padding: "12px var(--page-horizontal-padding)", paddingBottom: "calc(96px + env(safe-area-inset-bottom, 0px))" }}>
 
         {/* KPI cards */}
         <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 20 }}>

@@ -60,7 +60,7 @@ export function BusinessDetailsScreen() {
       />
 
       {/* Scrollable content */}
-      <div className="flex flex-1 flex-col gap-5 overflow-y-auto px-5 pb-28 pt-6">
+      <div className="flex flex-1 flex-col gap-5 overflow-y-auto px-4 pb-28 pt-6">
         {/* Title */}
         <div className="text-center">
           <h1
@@ -91,7 +91,7 @@ export function BusinessDetailsScreen() {
 
         {/* Role dropdown */}
         <Select value={role} onValueChange={setRole}>
-          <SelectTrigger className="h-12 w-full text-right" dir="rtl">
+          <SelectTrigger className="h-10 w-full text-right" dir="rtl">
             <SelectValue placeholder="תפקיד בחברה" />
           </SelectTrigger>
           <SelectContent dir="rtl">
@@ -108,7 +108,7 @@ export function BusinessDetailsScreen() {
           placeholder="שם העסק"
           value={businessName}
           onChange={(e) => setBusinessName(e.target.value)}
-          className="h-12 text-right"
+          className="h-10 text-right"
           dir="rtl"
         />
 
@@ -117,7 +117,7 @@ export function BusinessDetailsScreen() {
           placeholder="שם חברה (לפי רישום)"
           value={companyName}
           onChange={(e) => setCompanyName(e.target.value)}
-          className="h-12 text-right"
+          className="h-10 text-right"
           dir="rtl"
         />
 
@@ -149,7 +149,7 @@ export function BusinessDetailsScreen() {
                 onChange={(e) => setBranchCount(e.target.value)}
                 type="number"
                 inputMode="numeric"
-                className="h-12 bg-white text-right"
+                className="h-10 bg-white text-right"
                 dir="rtl"
               />
             </div>
@@ -214,7 +214,7 @@ export function BusinessDetailsScreen() {
       </div>
 
       {/* Sticky bottom button */}
-      <div className="fixed bottom-0 left-0 right-0 border-t border-input bg-white px-5 py-4">
+      <div className="fixed bottom-0 left-0 right-0 border-t border-input bg-white px-4 py-4">
         <Button
           disabled={!isValid}
           onClick={handleContinue}

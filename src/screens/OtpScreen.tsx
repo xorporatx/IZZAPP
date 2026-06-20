@@ -35,7 +35,7 @@ export function OtpScreen() {
       <AppHeader />
 
       {/* Main content */}
-      <div className="flex flex-1 flex-col items-center gap-5 px-5 py-8">
+      <div className="flex flex-1 flex-col items-center gap-5 px-4 py-8">
         {/* Coin illustration */}
         <div className="flex h-32 w-36 items-center justify-center">
           <img src={CoinImage} alt="Coin" className="h-full w-full object-contain" />

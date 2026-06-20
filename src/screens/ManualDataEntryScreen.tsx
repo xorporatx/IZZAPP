@@ -10,7 +10,7 @@ const inputBase: React.CSSProperties = {
   background: "white",
   border: "1px solid #e5e5e5",
   borderRadius: 8,
-  height: 48,
+  height: "var(--input-height)",
   padding: "4px 12px",
   fontSize: 14,
   fontFamily: font,
@@ -29,11 +29,11 @@ const labelStyle: React.CSSProperties = {
   color: "#111827",
   textAlign: "right",
   display: "block",
-  marginBottom: 8,
+  marginBottom: "var(--label-gap)" as string,
   width: "100%",
 };
 
-const fieldGap = 16;
+const fieldGap = "var(--field-gap)";
 
 // ── Shared form primitives ────────────────────────────────────────────────────
 
@@ -890,7 +890,7 @@ export function ManualDataEntryScreen() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "0 20px",
+          padding: "0 var(--page-horizontal-padding)",
           background: "white",
           flexShrink: 0,
         }}
@@ -941,7 +941,7 @@ export function ManualDataEntryScreen() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          padding: "0 22px",
+          padding: "0 var(--page-horizontal-padding)",
           flexShrink: 0,
         }}
       >
@@ -978,7 +978,8 @@ export function ManualDataEntryScreen() {
         style={{
           flex: 1,
           overflowY: "auto",
-          padding: "0 16px",
+          paddingLeft: "var(--page-horizontal-padding)",
+          paddingRight: "var(--page-horizontal-padding)",
           paddingBottom: 100,
         }}
       >
