@@ -208,75 +208,77 @@ export function FixedExpensesScreen() {
               </span>
             </div>
 
-            {/* Column headers */}
-            <div
-              dir="ltr"
-              style={{
-                display: "flex",
-                borderBottom: "1px solid #e5e5e5",
-                padding: "0 24px",
-                height: 40,
-                alignItems: "center",
-              }}
-            >
-              <div style={{ flex: 1, fontFamily: font, fontSize: 14, fontWeight: 500, color: "#737373", textAlign: "left" }}>
-                עלות
-              </div>
-              <div style={{ flex: 1, fontFamily: font, fontSize: 14, fontWeight: 500, color: "#737373", textAlign: "right" }}>
-                סוג
-              </div>
-            </div>
+            {/* Table content — single 24px horizontal padding wrapper */}
+            <div style={{ paddingLeft: 24, paddingRight: 24 }}>
 
-            {/* Data rows */}
-            {expenses.map((expense, idx) => (
+              {/* Column headers */}
               <div
-                key={expense.id}
+                dir="ltr"
+                style={{
+                  display: "flex",
+                  borderBottom: "1px solid #e5e5e5",
+                  height: 40,
+                  alignItems: "center",
+                }}
+              >
+                <div style={{ flex: 1, fontFamily: font, fontSize: 14, fontWeight: 500, color: "#737373", textAlign: "left" }}>
+                  עלות
+                </div>
+                <div style={{ flex: 1, fontFamily: font, fontSize: 14, fontWeight: 500, color: "#737373", textAlign: "right" }}>
+                  סוג
+                </div>
+              </div>
+
+              {/* Data rows */}
+              {expenses.map((expense, idx) => (
+                <div
+                  key={expense.id}
+                  dir="ltr"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    height: 52,
+                    borderBottom: idx < expenses.length - 1 ? "1px solid #e5e5e5" : "none",
+                  }}
+                >
+                  <div style={{ flex: 1, fontFamily: font, fontSize: 14, color: "#262626", textAlign: "left" }}>
+                    {formatILS(expense.amount)}
+                  </div>
+                  <div
+                    style={{
+                      flex: 1,
+                      fontFamily: font,
+                      fontSize: 14,
+                      color: "#262626",
+                      textAlign: "right",
+                      overflow: "hidden",
+                      whiteSpace: "nowrap",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    {expense.category}
+                  </div>
+                </div>
+              ))}
+
+              {/* Total row */}
+              <div
                 dir="ltr"
                 style={{
                   display: "flex",
                   alignItems: "center",
                   height: 52,
-                  padding: "0 24px",
-                  borderBottom: idx < expenses.length - 1 ? "1px solid #e5e5e5" : "none",
+                  borderTop: "1px solid #e5e5e5",
                 }}
               >
-                <div style={{ flex: 1, fontFamily: font, fontSize: 14, color: "#262626", textAlign: "left" }}>
-                  {formatILS(expense.amount)}
+                <div style={{ flex: 1, fontFamily: font, fontSize: 14, fontWeight: 700, color: "#262626", textAlign: "left" }}>
+                  {formatILS(total)}
                 </div>
-                <div
-                  style={{
-                    flex: 1,
-                    fontFamily: font,
-                    fontSize: 14,
-                    color: "#262626",
-                    textAlign: "right",
-                    overflow: "hidden",
-                    whiteSpace: "nowrap",
-                    textOverflow: "ellipsis",
-                  }}
-                >
-                  {expense.category}
+                <div style={{ flex: 1, fontFamily: font, fontSize: 14, fontWeight: 700, color: "#262626", textAlign: "right" }}>
+                  סה״כ קבוע
                 </div>
               </div>
-            ))}
 
-            {/* Total row */}
-            <div
-              dir="ltr"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                height: 52,
-                padding: "0 24px",
-                borderTop: "1px solid #e5e5e5",
-              }}
-            >
-              <div style={{ flex: 1, fontFamily: font, fontSize: 14, fontWeight: 700, color: "#262626", textAlign: "left" }}>
-                {formatILS(total)}
-              </div>
-              <div style={{ flex: 1, fontFamily: font, fontSize: 14, fontWeight: 700, color: "#262626", textAlign: "right" }}>
-                סה״כ קבוע
-              </div>
             </div>
           </div>
         )}
