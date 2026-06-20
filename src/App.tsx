@@ -8,6 +8,7 @@ import { IntegrationsScreen } from "@/screens/IntegrationsScreen";
 import { CompletionScreen } from "@/screens/CompletionScreen";
 import { DashboardScreen } from "@/screens/DashboardScreen";
 import { ManualDataEntryScreen } from "@/screens/ManualDataEntryScreen";
+import { FixedExpensesScreen } from "@/screens/FixedExpensesScreen";
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="/onboarding/completion" element={<CompletionScreen />} />
         <Route path="/dashboard" element={<DashboardScreen />} />
         <Route path="/daily-entry" element={<ManualDataEntryScreen />} />
+        <Route path="/expenses" element={<FixedExpensesScreen />} />
       </Routes>
     </BrowserRouter>
   );
