@@ -55,7 +55,7 @@ export function BusinessDetailsScreen() {
 
       <AppHeader
         onBack={() => navigate("/auth/phone")}
-        leftAction={{ label: "דלג", onClick: () => navigate("/onboarding/next") }}
+        leftAction={{ label: "דלג", onClick: () => navigate("/dashboard") }}
         progress={25}
       />
 
