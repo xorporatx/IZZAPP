@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
 import CoinImage from "@/assets/coin.png";
-import { AppHeader } from "@/components/AppHeader";
+import { AuthHeader } from "@/components/AuthHeader";
 
 export function OtpScreen() {
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ export function OtpScreen() {
       {/* Status bar */}
       <div className="h-14 bg-white" />
 
-      <AppHeader />
+      <AuthHeader />
 
       {/* Main content */}
       <div className="flex flex-1 flex-col items-center gap-5 px-4 py-8">

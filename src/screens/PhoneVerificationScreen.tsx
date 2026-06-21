@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { X } from "lucide-react";
+import { AuthHeader } from "@/components/AuthHeader";
 import CoinImage from "@/assets/coin.png";
 
 // Israeli phone validation
@@ -31,39 +31,7 @@ export function PhoneVerificationScreen() {
       {/* Status bar */}
       <div className="h-14 bg-white" />
 
-      {/* Navbar with back button */}
-      <div
-        style={{
-          display: "flex",
-          width: "360px",
-          height: "56px",
-          padding: "0 var(--page-horizontal-padding)",
-          justifyContent: "space-between",
-          alignItems: "center",
-          backgroundColor: "white",
-        }}
-      >
-        <div />
-        <button
-          onClick={() => navigate(-1)}
-          style={{
-            display: "flex",
-            width: "36px",
-            height: "36px",
-            justifyContent: "center",
-            alignItems: "center",
-            flexShrink: 0,
-            backgroundColor: "transparent",
-            border: "none",
-            cursor: "pointer",
-            borderRadius: "8px",
-          }}
-          className="hover:bg-muted"
-          aria-label="Back"
-        >
-          <X className="h-5 w-5 text-foreground" />
-        </button>
-      </div>
+      <AuthHeader onClose={() => navigate(-1)} />
 
       {/* Main content */}
       <div className="flex flex-1 flex-col items-center gap-6 px-4 py-8">
