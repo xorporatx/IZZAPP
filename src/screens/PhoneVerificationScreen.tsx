@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ChevronRight } from "lucide-react";
+import { X } from "lucide-react";
 import CoinImage from "@/assets/coin.png";
 
 // Israeli phone validation
@@ -61,7 +61,7 @@ export function PhoneVerificationScreen() {
           className="hover:bg-muted"
           aria-label="Back"
         >
-          <ChevronRight className="h-5 w-5 text-foreground" />
+          <X className="h-5 w-5 text-foreground" />
         </button>
       </div>
 
