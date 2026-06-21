@@ -3,21 +3,26 @@ import { useNavigate, useLocation } from "react-router-dom";
 import {
   BarChart2, ChefHat, UserCheck, Expand,
   Settings, BellDot, TrendingUp, Receipt, X,
-  Droplet, UserRound,
+  Droplet, UserRound, FileSymlink,
 } from "lucide-react";
 
 // ── Menu definition ───────────────────────────────────────────────────────────
 
 const MENU_ITEMS = [
-  { label: "בקרה",         icon: BarChart2,  path: "/dashboard"  },
-  { label: "פודקוסט",      icon: ChefHat,    path: "/food-cost"  },
-  { label: "ליבר קוסט",   icon: UserCheck,  path: "/labor-cost" },
-  { label: "הוצאות",       icon: Expand,     path: "/expenses"   },
-  { label: "הגדרות",       icon: Settings,   path: "/settings"   },
-  { label: "התראות",       icon: BellDot,    path: "/alerts"     },
-  { label: "יעדים",        icon: TrendingUp, path: "/goals"      },
-  { label: "קבלות",        icon: Receipt,    path: "/receipts"   },
-  { label: "פרופיל אישי", icon: UserRound,  path: "/profile"    },
+  { label: "בקרה",         icon: BarChart2,   path: "/dashboard"  },
+  { label: "פודקוסט",      icon: ChefHat,     path: "/food-cost"  },
+  { label: "ליבר קוסט",   icon: UserCheck,   path: "/labor-cost" },
+  { label: "הוצאות",       icon: Expand,      path: "/expenses"   },
+  { label: "הגדרות",       icon: Settings,    path: "/settings"   },
+  { label: "התראות",       icon: BellDot,     path: "/alerts"     },
+  { label: "יעדים",        icon: TrendingUp,  path: "/goals"      },
+  { label: "קבלות",        icon: Receipt,     path: "/receipts"   },
+  { label: "פרופיל אישי", icon: UserRound,   path: "/profile"    },
+];
+
+// Separate bottom section items (below divider)
+const MENU_ITEMS_BOTTOM = [
+  { label: "העלאת קבצים", icon: FileSymlink, path: "/uploads" },
 ];
 
 // ── Props ─────────────────────────────────────────────────────────────────────
@@ -235,6 +240,41 @@ export function SideMenuDrawer({ open, onClose }: SideMenuDrawerProps) {
                       fontWeight: isActive ? 600 : 400,
                       color: isActive ? "#047857" : "#262626",
                       lineHeight: "20px",
+                    }}>
+                      {label}
+                    </span>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+
+        {/* Separator + bottom items */}
+        <div style={{ height: 1, background: "#f0f0f0", margin: "8px 0" }} />
+        <nav aria-label="ניווט נוסף" style={{ padding: "4px 10px" }}>
+          <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column" }}>
+            {MENU_ITEMS_BOTTOM.map(({ label, icon: Icon, path }) => {
+              const isActive = pathname === path;
+              return (
+                <li key={path}>
+                  <button
+                    onClick={() => go(path)}
+                    aria-current={isActive ? "page" : undefined}
+                    style={{
+                      width: "100%",
+                      display: "flex", flexDirection: "row",
+                      alignItems: "center", gap: 10,
+                      padding: "9px 10px", borderRadius: 8,
+                      background: isActive ? "#f0fdf4" : "transparent",
+                      border: "none", cursor: "pointer", textAlign: "right",
+                    }}
+                  >
+                    <Icon style={{ width: 20, height: 20, color: isActive ? "#047857" : "#737373", flexShrink: 0 }} />
+                    <span style={{
+                      fontFamily: '"Google Sans", sans-serif',
+                      fontSize: 14, fontWeight: isActive ? 600 : 400,
+                      color: isActive ? "#047857" : "#262626", lineHeight: "20px",
                     }}>
                       {label}
                     </span>
