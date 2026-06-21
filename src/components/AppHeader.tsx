@@ -65,18 +65,6 @@ export function AppHeader({ onBack, leftAction, progress }: AppHeaderProps) {
         </button>
       </div>
 
-      {/* Progress bar */}
-      {progress !== undefined && (
-        <div className="h-1 w-full bg-transparent">
-          <div
-            className="h-full transition-all"
-            style={{
-              width: progress > 100 ? progress : `${progress}%`,
-              background: "#A3E635",
-            }}
-          />
-        </div>
-      )}
     </div>
   );
 }
