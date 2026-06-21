@@ -12,6 +12,12 @@ import { FixedExpensesScreen } from "@/screens/FixedExpensesScreen";
 import { LaborCostScreen } from "@/screens/LaborCostScreen";
 import { FoodCostOverviewScreen } from "@/screens/FoodCostOverviewScreen";
 import { FoodCostSupplierDetailsScreen } from "@/screens/FoodCostSupplierDetailsScreen";
+import { SettingsScreen } from "@/screens/SettingsScreen";
+import { NotificationsScreen } from "@/screens/NotificationsScreen";
+import { ExportReportsScreen } from "@/screens/ExportReportsScreen";
+import { SettingsBusinessDetailsScreen } from "@/screens/SettingsBusinessDetailsScreen";
+import { BusinessProfileScreen } from "@/screens/BusinessProfileScreen";
+import { ReceiptsScreen } from "@/screens/ReceiptsScreen";
 
 export default function App() {
   return (
@@ -31,6 +37,12 @@ export default function App() {
         <Route path="/labor-cost" element={<LaborCostScreen />} />
         <Route path="/food-cost" element={<FoodCostOverviewScreen />} />
         <Route path="/food-cost/:supplierId" element={<FoodCostSupplierDetailsScreen />} />
+        <Route path="/settings" element={<SettingsScreen />} />
+        <Route path="/settings/notifications" element={<NotificationsScreen />} />
+        <Route path="/settings/export" element={<ExportReportsScreen />} />
+        <Route path="/settings/business-details" element={<SettingsBusinessDetailsScreen />} />
+        <Route path="/settings/business-profile" element={<BusinessProfileScreen />} />
+        <Route path="/receipts" element={<ReceiptsScreen />} />
       </Routes>
     </BrowserRouter>
   );
