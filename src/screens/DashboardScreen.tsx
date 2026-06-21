@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Camera, BellDot, Menu, Calendar, ChevronLeft, AlertCircle } from "lucide-react";
+import { Camera, Menu, Calendar, ChevronLeft, AlertCircle } from "lucide-react";
 import { BottomNav } from "@/components/BottomNav";
 import { SideMenuDrawer } from "@/components/SideMenuDrawer";
 
