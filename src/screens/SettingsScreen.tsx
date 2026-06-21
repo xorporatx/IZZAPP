@@ -93,7 +93,7 @@ export function SettingsScreen() {
       >
         {/* LEFT: X close button */}
         <button
-          onClick={() => navigate(-1)}
+          onClick={() => navigate("/dashboard")}
           style={{
             width: 36, height: 36, borderRadius: "50%",
             background: "#f5f5f5",
