@@ -4,7 +4,6 @@ import {
   BookOpen, ScanLine, CheckCircle, Sparkles,
   Play,
 } from "lucide-react";
-import { BottomNav } from "@/components/BottomNav";
 import { SideMenuDrawer } from "@/components/SideMenuDrawer";
 
 // TODO: Replace all mock processing with real API calls:
@@ -602,12 +601,8 @@ export function UploadCenterScreen() {
         {/* ── Upload Summary ──────────────────────────────────────────────── */}
         <UploadSummary uploads={uploads} />
 
-        {/* ── Future integrations placeholder ────────────────────────────── */}
-        <IntegrationsRow />
-
       </div>
 
-      <BottomNav />
       <SideMenuDrawer open={menuOpen} onClose={() => setMenuOpen(false)} />
     </div>
   );
@@ -699,28 +694,3 @@ function UploadSummary({ uploads }: { uploads: UploadMap }) {
   );
 }
 
-// ── IntegrationsRow ───────────────────────────────────────────────────────────
-
-const FUTURE_INTEGRATIONS = ["iCount", "חשבשבת", "Priority", "SAP", "Shopify", "Toast", "Square", "Lightspeed", "ShiftOrg"];
-
-function IntegrationsRow() {
-  return (
-    <div style={{ marginTop: 24 }}>
-      <p style={{ fontFamily: font, fontSize: 12, fontWeight: 600, color: "#a3a3a3", textAlign: "right", marginBottom: 10 }}>
-        אינטגרציות עתידיות
-      </p>
-      <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "flex-end" }}>
-        {FUTURE_INTEGRATIONS.map(name => (
-          <span key={name} style={{
-            fontFamily: font, fontSize: 10, fontWeight: 500,
-            color: "#a3a3a3", background: "#f5f5f5",
-            border: "1px solid #e5e5e5",
-            borderRadius: 6, padding: "4px 8px",
-          }}>
-            {name}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
