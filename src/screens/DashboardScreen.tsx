@@ -397,7 +397,7 @@ export function DashboardScreen() {
         <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 20 }}>
           <KpiCard title="מכירות מצטברות" {...dashData.accumulatedSales} />
           <KpiCard title="רווח עדכני"      {...dashData.currentProfit} />
-          <KpiCard title="פוד קוסט"        {...dashData.foodCost} tappable />
+          <KpiCard title="פוד קוסט"        {...dashData.foodCost} tappable onClick={() => navigate("/food-cost")} />
           <KpiCard title="ליבור קוסט"      {...dashData.laborCost} tappable onClick={() => navigate("/labor-cost")} />
           <KpiCard title="הוצאות קבועות"  {...dashData.fixedExpenses} tappable onClick={() => navigate("/expenses")} />
           <KpiCard title="הוצאות משתנות"  {...dashData.variableExpenses} tappable />

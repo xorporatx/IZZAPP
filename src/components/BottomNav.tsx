@@ -62,7 +62,10 @@ function NavItem({ Icon, label, active, onClick }: NavItemProps) {
 export function BottomNav() {
   const navigate     = useNavigate();
   const { pathname } = useLocation();
-  const is           = (p: string) => pathname === p;
+  const is = (p: string) =>
+    pathname === p ||
+    // sub-routes of בקרה stay highlighted
+    (p === "/dashboard" && (pathname.startsWith("/food-cost") || pathname.startsWith("/labor-cost")));
 
   return (
     // Outer fixed wrapper — overflow visible so FAB glow is never clipped

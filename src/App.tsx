@@ -10,6 +10,8 @@ import { DashboardScreen } from "@/screens/DashboardScreen";
 import { ManualDataEntryScreen } from "@/screens/ManualDataEntryScreen";
 import { FixedExpensesScreen } from "@/screens/FixedExpensesScreen";
 import { LaborCostScreen } from "@/screens/LaborCostScreen";
+import { FoodCostOverviewScreen } from "@/screens/FoodCostOverviewScreen";
+import { FoodCostSupplierDetailsScreen } from "@/screens/FoodCostSupplierDetailsScreen";
 
 export default function App() {
   return (
@@ -27,6 +29,8 @@ export default function App() {
         <Route path="/daily-entry" element={<ManualDataEntryScreen />} />
         <Route path="/expenses" element={<FixedExpensesScreen />} />
         <Route path="/labor-cost" element={<LaborCostScreen />} />
+        <Route path="/food-cost" element={<FoodCostOverviewScreen />} />
+        <Route path="/food-cost/:supplierId" element={<FoodCostSupplierDetailsScreen />} />
       </Routes>
     </BrowserRouter>
   );
