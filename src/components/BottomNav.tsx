@@ -1,9 +1,11 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { UserRound, Expand, CircleCheck, BarChart2, Plus } from "lucide-react";
 
-// Figma node 479-3985 — Navigation Bar
-// LTR slot order: פרופיל | הוצאות | FAB | יעדים | בקרה
-// RTL visual (right→left): בקרה | יעדים | FAB | הוצאות | פרופיל
+// Figma node 479-3985
+// Container: 360×106px, flex center, rounded 26 26 0 0
+// Inner row: 316×43px, flex between, items-start
+// Each tab slot: 36px wide — icon 22px (h-35) + label 9px (h-8)
+// FAB: ~46px circle centered in 43px row, glow via box-shadow
 
 const ACTIVE = "#059669";
 const MUTED  = "#737373";
@@ -25,28 +27,34 @@ function NavItem({ Icon, label, active, onClick }: NavItemProps) {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
-        gap: 5,
+        justifyContent: "flex-end",    // anchor to bottom of 35px icon zone
+        gap: 0,
         background: "none",
         border: "none",
         cursor: "pointer",
         padding: 0,
-        width: "100%",
-        height: "100%",
-        minWidth: 0,
+        width: 36,
+        flexShrink: 0,
       }}
     >
-      <Icon style={{ width: 24, height: 24, color, flexShrink: 0 }} />
-      <span style={{
-        fontFamily: '"Google Sans", sans-serif',
-        fontSize: 10,
-        lineHeight: 1,
-        color,
-        textAlign: "center",
-        whiteSpace: "nowrap",
-      }}>
-        {label}
-      </span>
+      {/* icon zone — 35px tall, icon centered within */}
+      <div style={{ height: 35, display: "flex", alignItems: "center", justifyContent: "center", width: "100%" }}>
+        <Icon style={{ width: 22, height: 22, color, flexShrink: 0 }} />
+      </div>
+      {/* label zone — 8px tall */}
+      <div style={{ height: 8, display: "flex", alignItems: "center", justifyContent: "center", width: 33 }}>
+        <span style={{
+          fontFamily: '"Google Sans", sans-serif',
+          fontSize: 9,
+          lineHeight: 1,
+          color,
+          textAlign: "center",
+          whiteSpace: "nowrap",
+          display: "block",
+        }}>
+          {label}
+        </span>
+      </div>
     </button>
   );
 }
@@ -57,6 +65,7 @@ export function BottomNav() {
   const is           = (p: string) => pathname === p;
 
   return (
+    // Outer fixed wrapper — overflow visible so FAB glow is never clipped
     <div
       dir="ltr"
       style={{
@@ -68,52 +77,57 @@ export function BottomNav() {
         overflow: "visible",
       }}
     >
+      {/* White nav card — 106px, rounded top corners */}
       <div
         style={{
           position: "relative",
           background: "white",
           borderRadius: "26px 26px 0 0",
-          boxShadow: "0px -2px 12px rgba(0,0,0,0.08)",
+          boxShadow: "0px 1px 2px rgba(0,0,0,0.05)",
           paddingBottom: "env(safe-area-inset-bottom, 0px)",
           overflow: "visible",
+          height: 106,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
+        {/* Inner content row — 316px wide, 43px tall, flex between */}
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(5, 1fr)",
-            height: 80,
-            alignItems: "center",
+            width: 316,
+            height: 43,
+            display: "flex",
+            alignItems: "flex-start",
+            justifyContent: "space-between",
             overflow: "visible",
+            position: "relative",
           }}
         >
-          {/* Slot 1 — פרופיל */}
-          <NavItem Icon={UserRound}   label="פרופיל" active={is("/profile")}   onClick={() => navigate("/profile")} />
+          {/* LEFT group: פרופיל + הוצאות */}
+          <div style={{ display: "flex", gap: 22, alignItems: "flex-start", flexShrink: 0 }}>
+            <NavItem Icon={UserRound} label="פרופיל" active={is("/profile")}  onClick={() => navigate("/profile")} />
+            <NavItem Icon={Expand}    label="הוצאות" active={is("/expenses")} onClick={() => navigate("/expenses")} />
+          </div>
 
-          {/* Slot 2 — הוצאות */}
-          <NavItem Icon={Expand}      label="הוצאות" active={is("/expenses")}  onClick={() => navigate("/expenses")} />
-
-          {/* Slot 3 — FAB: positioned at top-center of this cell, floats above the card */}
+          {/* CENTER: FAB — 46px circle, vertically centered in 43px row, glow via box-shadow */}
           <div
             style={{
               position: "relative",
-              height: "100%",
               overflow: "visible",
+              flexShrink: 0,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              height: 43,
             }}
           >
             <button
               onClick={() => navigate("/daily-entry")}
               aria-label="הוסף"
               style={{
-                position: "absolute",
-                top: 0,
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                width: 64,
-                height: 64,
+                width: 46,
+                height: 46,
                 borderRadius: "50%",
                 background: FAB_BG,
                 border: "none",
@@ -122,19 +136,20 @@ export function BottomNav() {
                 alignItems: "center",
                 justifyContent: "center",
                 flexShrink: 0,
-                boxShadow: "0 0 20px 6px rgba(4,120,87,0.40)",
-                zIndex: 2,
+                boxShadow: "0 0 0 16px rgba(4,120,87,0.12), 0 0 0 8px rgba(4,120,87,0.18)",
+                position: "relative",
+                zIndex: 1,
               }}
             >
-              <Plus style={{ width: 28, height: 28, color: "white", strokeWidth: 2.5 }} />
+              <Plus style={{ width: 18, height: 18, color: "white", strokeWidth: 2.5 }} />
             </button>
           </div>
 
-          {/* Slot 4 — יעדים */}
-          <NavItem Icon={CircleCheck} label="יעדים"  active={is("/goals")}     onClick={() => navigate("/goals")} />
-
-          {/* Slot 5 — בקרה */}
-          <NavItem Icon={BarChart2}   label="בקרה"   active={is("/dashboard")} onClick={() => navigate("/dashboard")} />
+          {/* RIGHT group: יעדים + בקרה */}
+          <div style={{ display: "flex", gap: 22, alignItems: "flex-start", flexShrink: 0 }}>
+            <NavItem Icon={CircleCheck} label="יעדים" active={is("/goals")}     onClick={() => navigate("/goals")} />
+            <NavItem Icon={BarChart2}   label="בקרה"  active={is("/dashboard")} onClick={() => navigate("/dashboard")} />
+          </div>
         </div>
       </div>
     </div>
