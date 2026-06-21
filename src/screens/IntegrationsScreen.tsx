@@ -112,7 +112,7 @@ export function IntegrationsScreen() {
 
       <AppHeader
         onBack={() => navigate("/onboarding/business-info")}
-        leftAction={{ label: "דלג", onClick: () => navigate("/onboarding/completion") }}
+        leftAction={{ label: "דלג", onClick: () => navigate("/dashboard") }}
         progress={289}
       />
 
