@@ -344,7 +344,7 @@ export function DashboardScreen() {
            dir="ltr": tabs left, calendar pinned to far right via marginLeft:auto */}
       <div
         dir="ltr"
-        style={{ background: "white", padding: "0 var(--page-horizontal-padding) 12px", display: "flex", alignItems: "center", gap: 10 }}
+        style={{ background: "white", padding: "0 var(--page-horizontal-padding)", height: 59, display: "flex", alignItems: "center", gap: 10 }}
       >
         {/* LEFT side: tabs — DOM order 12חודשים→היום so visually rightmost = היום */}
         <div style={{ display: "flex", gap: 4 }}>
@@ -355,7 +355,7 @@ export function DashboardScreen() {
                 key={tab}
                 onClick={() => handleTabChange(tab as DashboardRange)}
                 style={{
-                  padding: "8px 12px",
+                  padding: "8px 16px",
                   borderRadius: 8,
                   border: "none",
                   cursor: "pointer",
