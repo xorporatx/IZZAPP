@@ -68,28 +68,6 @@ function useGlobalStyle(css: string) {
   }, []);
 }
 
-// ── StatusLabel ───────────────────────────────────────────────────────────────
-
-function StatusLabel({ entry }: { entry: UploadEntry }) {
-  if (entry.status === "idle") {
-    return <span style={{ fontFamily: font, fontSize: 12, fontWeight: 600, color: "#a3a3a3" }}>לא הועלה</span>;
-  }
-  if (entry.status === "completed") {
-    return (
-      <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-        <CheckCircle style={{ width: 12, height: 12, color: GREEN, flexShrink: 0 }} />
-        <span style={{ fontFamily: font, fontSize: 12, fontWeight: 600, color: GREEN }}>
-          {entry.recordsImported?.toLocaleString("he-IL")} רשומות
-        </span>
-      </div>
-    );
-  }
-  if (entry.status === "error") {
-    return <span style={{ fontFamily: font, fontSize: 12, fontWeight: 600, color: "#ef4444" }}>שגיאה</span>;
-  }
-  return <span style={{ fontFamily: font, fontSize: 12, fontWeight: 600, color: "#f59e0b" }}>{STEP_LABELS[entry.status]}</span>;
-}
-
 // ── ProcessingDots ────────────────────────────────────────────────────────────
 
 function ProcessingDots({ label }: { label: string }) {
@@ -191,44 +169,6 @@ function UploadDropzone({
   );
 }
 
-// ── InfoRow ───────────────────────────────────────────────────────────────────
-// Matches Figma: px-20 py-10, rounded-sm (6px), label (12px medium #737373) + value (12px regular #262626)
-
-function InfoRow({ label, value, lime }: { label: string; value: string; lime?: boolean }) {
-  return (
-    <div style={{
-      background: lime ? "#f7fee7" : "#fafafa",
-      borderRadius: 6,
-      padding: "10px 20px",
-      display: "flex", flexDirection: "column",
-      gap: 2,
-    }}>
-      <p style={{ fontFamily: font, fontSize: 12, fontWeight: 500, color: "#737373", margin: 0, textAlign: "right" }}>
-        {label}
-      </p>
-      <p style={{ fontFamily: font, fontSize: 12, fontWeight: 400, color: "#262626", margin: 0, textAlign: "right" }}>
-        {value}
-      </p>
-    </div>
-  );
-}
-
-// ── AIBadge ───────────────────────────────────────────────────────────────────
-
-function AIBadge() {
-  return (
-    <div style={{
-      background: GREEN_BG, color: GREEN,
-      fontFamily: font, fontSize: 10, fontWeight: 700,
-      padding: "2px 6px", borderRadius: 4, letterSpacing: "0.5px",
-      display: "flex", alignItems: "center", gap: 3, flexShrink: 0,
-    }}>
-      <Sparkles style={{ width: 10, height: 10 }} />
-      AI
-    </div>
-  );
-}
-
 // ── CardShell ─────────────────────────────────────────────────────────────────
 // Matches Figma node 464-4175 exactly:
 //   - 24px padding, border #f9fafb, shadow/sm
@@ -239,21 +179,14 @@ function AIBadge() {
 
 type CardShellProps = {
   icon: React.ElementType;
-  iconBg: string;    // e.g. "#dcfce7" (green-100)
-  iconColor: string; // e.g. "#059669"
+  iconBg: string;
+  iconColor: string;
   title: string;
   description: string;
-  aiTag?: boolean;
-  statusEntry: UploadEntry;
-  row1: { label: string; value: string };
-  row2: { label: string; value: string };
   children: React.ReactNode;
 };
 
-function CardShell({
-  icon: Icon, iconBg, iconColor, title, description,
-  aiTag, statusEntry, row1, row2, children,
-}: CardShellProps) {
+function CardShell({ icon: Icon, iconBg, iconColor, title, description, children }: CardShellProps) {
   return (
     <div style={{
       background: "white",
@@ -265,23 +198,13 @@ function CardShell({
     }}>
       {/* Header: [text-col flex-1] [icon circle] */}
       <div dir="ltr" style={{ display: "flex", alignItems: "center", gap: 16 }}>
-        {/* Text column */}
         <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 2, minWidth: 0 }}>
-          {/* Title row: status left | title+badge right */}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-            <StatusLabel entry={statusEntry} />
-            <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-              {aiTag && <AIBadge />}
-              <p style={{
-                fontFamily: font, fontSize: 12, fontWeight: 700,
-                color: "#262626", margin: 0, letterSpacing: "-0.36px",
-                textAlign: "right",
-              }}>
-                {title}
-              </p>
-            </div>
-          </div>
-          {/* Description */}
+          <p style={{
+            fontFamily: font, fontSize: 12, fontWeight: 700,
+            color: "#262626", margin: 0, letterSpacing: "-0.36px", textAlign: "right",
+          }}>
+            {title}
+          </p>
           <p style={{
             fontFamily: font, fontSize: 12, fontWeight: 400,
             color: "#737373", margin: 0, lineHeight: "16px", textAlign: "right",
@@ -289,45 +212,18 @@ function CardShell({
             {description}
           </p>
         </div>
-
-        {/* Icon circle: 36px, iconBg, border 2px white */}
         <div style={{
           width: 36, height: 36, borderRadius: "50%",
-          background: iconBg,
-          border: "2px solid white",
+          background: iconBg, border: "2px solid white",
           display: "flex", alignItems: "center", justifyContent: "center",
-          flexShrink: 0,
-          boxShadow: "0 0 0 1px rgba(0,0,0,0.06)",
+          flexShrink: 0, boxShadow: "0 0 0 1px rgba(0,0,0,0.06)",
         }}>
           <Icon style={{ width: 16, height: 16, color: iconColor }} />
         </div>
       </div>
 
-      {/* Two info rows */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-        <InfoRow label={row1.label} value={row1.value} />
-        <InfoRow label={row2.label} value={row2.value} lime />
-      </div>
-
-      {/* Dropzone / extra content */}
       {children}
     </div>
-  );
-}
-
-// ── StatusChip ────────────────────────────────────────────────────────────────
-
-function StatusChip({ label, active }: { label: string; active: boolean }) {
-  return (
-    <span style={{
-      fontFamily: font, fontSize: 10, fontWeight: 600,
-      color: active ? GREEN : "#737373",
-      background: active ? GREEN_BG : "#f5f5f5",
-      border: `1px solid ${active ? "#a7f3d0" : "#e5e5e5"}`,
-      borderRadius: 99, padding: "3px 8px",
-    }}>
-      {label}
-    </span>
   );
 }
 
@@ -486,9 +382,6 @@ export function UploadCenterScreen() {
             icon={FileText} iconBg="#dcfce7" iconColor="#059669"
             title="הזנת ספקים — ניתוח אוטומטי"
             description="AI מנתח ספקים, מוצרים, מחירים וחריגות"
-            statusEntry={u.suppliers}
-            row1={{ label: "סוג קבצים", value: "PDF / Excel / CSV" }}
-            row2={{ label: "מה מתעדכן", value: "פוד קוסט, מלאי, התראות AI" }}
           >
             <UploadDropzone
               label="העלה קובץ PDF / Excel מהספק"
@@ -504,9 +397,6 @@ export function UploadCenterScreen() {
             icon={Users} iconBg="#ede9fe" iconColor="#7c3aed"
             title="שיפטורג׳נייד — שעות עובדים"
             description="הזנה אוטומטית של שעות, עובדים ואומדן שכר"
-            statusEntry={u.employees}
-            row1={{ label: "סוג קבצים", value: "Excel / CSV / ShiftOrg" }}
-            row2={{ label: "מה מתעדכן", value: "דשבורד עובדים, דוחות שכר" }}
           >
             <UploadDropzone
               label="לחץ להעלאת קובץ Excel / CSV"
@@ -522,13 +412,8 @@ export function UploadCenterScreen() {
             icon={BarChart2} iconBg="#cffafe" iconColor="#0891b2"
             title="אנליזת מכירות לפי פריטים"
             description="המלצות AI על רווחיות, מחירים ופריטים בעייתיים"
-            aiTag
-            statusEntry={u.sales}
-            row1={{ label: "דוח מכירות", value: "Excel / CSV" }}
-            row2={{ label: "מחירון תפריט", value: "Excel / CSV" }}
           >
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              {/* Two dropzones */}
               <UploadDropzone
                 label="העלה דוח מכירות"
                 icon={BarChart2}
@@ -545,21 +430,6 @@ export function UploadCenterScreen() {
                 accept=".xlsx,.xls,.csv"
                 compact
               />
-
-              {/* Status chips */}
-              <div style={{ display: "flex", gap: 6, flexWrap: "wrap", justifyContent: "flex-end" }}>
-                <StatusChip
-                  label={u.sales.status === "completed" ? `✓ מכירות: ${u.sales.recordsImported} פריטים` : "מכירות: לא הועלה"}
-                  active={u.sales.status === "completed"}
-                />
-                <StatusChip
-                  label={u.menuPricing.status === "completed" ? `✓ מחירון: ${u.menuPricing.recordsImported} פריטים` : "מחירון: לא הועלה"}
-                  active={u.menuPricing.status === "completed"}
-                />
-                <StatusChip label="הזמנות ספקים: לא מחובר" active={false} />
-              </div>
-
-              {/* CTA */}
               <button
                 disabled={u.sales.status !== "completed" || analysisRunning}
                 onClick={runFullAnalysis}
@@ -589,7 +459,6 @@ export function UploadCenterScreen() {
                   <><Play style={{ width: 14, height: 14 }} /> הרץ ניתוח מלא</>
                 )}
               </button>
-
               {analysisComplete && <AIInsightBox />}
             </div>
           </CardShell>
@@ -599,10 +468,6 @@ export function UploadCenterScreen() {
             icon={BookOpen} iconBg="#fef3c7" iconColor="#d97706"
             title="ספר מתכונים — משקלי מרכיבים"
             description="חיבור מרכיבים לפריטי תפריט לחישוב עלות מנה"
-            aiTag
-            statusEntry={u.recipes}
-            row1={{ label: "סוג קבצים", value: "Excel / CSV" }}
-            row2={{ label: "מה מתעדכן", value: "עלות מנה, רווחיות פריטים" }}
           >
             <UploadDropzone
               label="ספר מתכונים — הזנה ידנית"
@@ -618,9 +483,6 @@ export function UploadCenterScreen() {
             icon={ScanLine} iconBg="#fee2e2" iconColor="#dc2626"
             title="סריקת חשבוניות"
             description="AI מזהה ספק, סכום וקטגוריה מתמונה או PDF"
-            statusEntry={u.receipts}
-            row1={{ label: "סוג קבצים", value: "תמונה / PDF / מצלמה" }}
-            row2={{ label: "מה מתעדכן", value: "הוצאות, קבלות, דוחות" }}
           >
             <UploadDropzone
               label="לחץ לצילום או העלאת חשבונית"
