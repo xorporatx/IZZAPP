@@ -1,4 +1,4 @@
-import { ChevronRight } from "lucide-react";
+import { X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 type AppHeaderProps = {
@@ -61,7 +61,7 @@ export function AppHeader({ onBack, leftAction, progress }: AppHeaderProps) {
           className="hover:bg-muted"
           aria-label="Back"
         >
-          <ChevronRight className="h-5 w-5 text-foreground" />
+          <X className="h-5 w-5 text-foreground" />
         </button>
       </div>
 
