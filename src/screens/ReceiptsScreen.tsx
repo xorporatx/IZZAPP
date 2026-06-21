@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { Menu, ArrowDown, Calendar, Download } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { ArrowDown, Calendar, Download } from "lucide-react";
 import { BottomNav } from "@/components/BottomNav";
 import { SideMenuDrawer } from "@/components/SideMenuDrawer";
+import { BackHeader } from "@/components/BackHeader";
 
 // TODO: Replace mock data with API data
 
@@ -67,6 +69,7 @@ function ReceiptRow({ name, date, amount }: { name: string; date: string; amount
 
 export function ReceiptsScreen() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const headCell: React.CSSProperties = {
     height: 40,
@@ -86,57 +89,7 @@ export function ReceiptsScreen() {
       dir="rtl"
       style={{ display: "flex", flexDirection: "column", minHeight: "100svh", background: "white", fontFamily: font }}
     >
-      {/* iOS status bar */}
-      <div style={{ height: 53, background: "white", flexShrink: 0 }} />
-
-      {/* Header */}
-      <div
-        dir="ltr"
-        style={{
-          background: "white",
-          padding: "var(--page-horizontal-padding)",
-          display: "flex",
-          alignItems: "center",
-          gap: 8,
-          flexShrink: 0,
-        }}
-      >
-        {/* LEFT: scan/action buttons (placeholder) */}
-        <div style={{ display: "flex", gap: 8 }}>
-          <button style={{
-            width: 36, height: 36, borderRadius: 8,
-            background: "white", border: "1px solid #e5e5e5",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            cursor: "pointer", boxShadow: "0 1px 1px rgba(0,0,0,0.05)",
-          }}>
-            <Download style={{ width: 16, height: 16, color: "#262626" }} />
-          </button>
-        </div>
-
-        {/* CENTER: greeting */}
-        <div style={{ flex: 1, textAlign: "center" }}>
-          <p style={{ fontFamily: font, fontSize: 12, fontWeight: 700, color: "#262626", letterSpacing: "-0.36px", lineHeight: "16px", margin: 0 }}>
-            שלום אור,
-          </p>
-          <p style={{ fontFamily: font, fontSize: 12, fontWeight: 400, color: "#737373", lineHeight: "16px", margin: 0 }}>
-            ג׳פניקה סניף אריאל
-          </p>
-        </div>
-
-        {/* RIGHT: menu */}
-        <button
-          onClick={() => setMenuOpen(true)}
-          style={{
-            width: 36, height: 36, borderRadius: "50%",
-            background: "#f5f5f5",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            border: "none", cursor: "pointer", flexShrink: 0,
-          }}
-          aria-label="פתח תפריט"
-        >
-          <Menu style={{ width: 20, height: 20, color: "#262626" }} />
-        </button>
-      </div>
+      <BackHeader onBack={() => navigate(-1)} title="קבלות" />
 
       {/* Scrollable content */}
       <div
