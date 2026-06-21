@@ -16,14 +16,16 @@ function SettingsRow({ icon: Icon, label, subtitle, onClick, danger }: SettingsR
     <button
       onClick={onClick}
       style={{
-        width: "100%",
         display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
         padding: "12px 0",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: 0,
+        alignSelf: "stretch",
         background: "none",
         border: "none",
         cursor: onClick ? "pointer" : "default",
+        width: "100%",
       }}
       dir="ltr"
     >
