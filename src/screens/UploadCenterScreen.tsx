@@ -436,7 +436,7 @@ export function UploadCenterScreen() {
   const u = uploads;
 
   return (
-    <div dir="rtl" style={{ display: "flex", flexDirection: "column", minHeight: "100svh", background: "#f9fafb", fontFamily: font }}>
+    <div dir="rtl" style={{ display: "flex", flexDirection: "column", minHeight: "100svh", background: "white", fontFamily: font }}>
       {/* iOS status bar */}
       <div style={{ height: 53, background: "white", flexShrink: 0 }} />
 
