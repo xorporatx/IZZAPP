@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BellDot, Menu } from "lucide-react";
+import { Camera, Menu } from "lucide-react";
 import { BottomNav } from "@/components/BottomNav";
 import { SideMenuDrawer } from "@/components/SideMenuDrawer";
 import { EditFixedExpensesDrawer, type FixedExpense } from "@/components/EditFixedExpensesDrawer";
@@ -50,7 +50,6 @@ export function FixedExpensesScreen() {
           display: "flex",
           alignItems: "center",
           gap: 8,
-          flexShrink: 0,
         }}
       >
         {/* LEFT: menu */}
@@ -77,24 +76,19 @@ export function FixedExpensesScreen() {
           </p>
         </div>
 
-        {/* RIGHT: bell */}
-        <div style={{ position: "relative" }}>
-          <button
-            style={{
-              width: 36, height: 36, borderRadius: 8,
-              display: "flex", alignItems: "center", justifyContent: "center",
-              background: "none", border: "none", cursor: "pointer",
-            }}
-            aria-label="התראות"
-          >
-            <BellDot style={{ width: 16, height: 16, color: "#262626" }} />
-          </button>
-          <span style={{
-            position: "absolute", top: 8, right: 8,
-            width: 4, height: 4, borderRadius: "50%",
-            background: "#dc2626",
-          }} />
-        </div>
+        {/* RIGHT: camera */}
+        <button
+          style={{
+            width: 36, height: 36, borderRadius: 8,
+            background: "#d9f99d",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            border: "none", cursor: "pointer", flexShrink: 0,
+            boxShadow: "0px 1px 2px rgba(0,0,0,0.1)",
+          }}
+          aria-label="Logo"
+        >
+          <Camera style={{ width: 16, height: 16, color: "#262626" }} />
+        </button>
       </div>
 
       {/* ── Tabs ────────────────────────────────────────────────────────────── */}

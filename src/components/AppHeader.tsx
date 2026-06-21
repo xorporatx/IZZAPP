@@ -10,7 +10,7 @@ type AppHeaderProps = {
   progress?: number; // 0–100 percentage, or pixel width if > 100
 };
 
-export function AppHeader({ onBack, leftAction, progress }: AppHeaderProps) {
+export function AppHeader({ onBack, leftAction }: AppHeaderProps) {
   const navigate = useNavigate();
 
   const handleBack = onBack ?? (() => navigate(-1));
