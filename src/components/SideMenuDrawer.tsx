@@ -3,20 +3,21 @@ import { useNavigate, useLocation } from "react-router-dom";
 import {
   BarChart2, ChefHat, UserCheck, Expand,
   Settings, BellDot, TrendingUp, Receipt, X,
-  Droplet,
+  Droplet, UserRound,
 } from "lucide-react";
 
 // ── Menu definition ───────────────────────────────────────────────────────────
 
 const MENU_ITEMS = [
-  { label: "בקרה",      icon: BarChart2,  path: "/dashboard"  },
-  { label: "פודקוסט",   icon: ChefHat,    path: "/food-cost"  },
-  { label: "ליבר קוסט", icon: UserCheck,  path: "/labor-cost" },
-  { label: "הוצאות",    icon: Expand,     path: "/expenses"   },
-  { label: "הגדרות",    icon: Settings,   path: "/settings"   },
-  { label: "התראות",    icon: BellDot,    path: "/alerts"     },
-  { label: "יעדים",     icon: TrendingUp, path: "/goals"      },
-  { label: "קבלות",     icon: Receipt,    path: "/receipts"   },
+  { label: "בקרה",         icon: BarChart2,  path: "/dashboard"  },
+  { label: "פודקוסט",      icon: ChefHat,    path: "/food-cost"  },
+  { label: "ליבר קוסט",   icon: UserCheck,  path: "/labor-cost" },
+  { label: "הוצאות",       icon: Expand,     path: "/expenses"   },
+  { label: "הגדרות",       icon: Settings,   path: "/settings"   },
+  { label: "התראות",       icon: BellDot,    path: "/alerts"     },
+  { label: "יעדים",        icon: TrendingUp, path: "/goals"      },
+  { label: "קבלות",        icon: Receipt,    path: "/receipts"   },
+  { label: "פרופיל אישי", icon: UserRound,  path: "/profile"    },
 ];
 
 // ── Props ─────────────────────────────────────────────────────────────────────
