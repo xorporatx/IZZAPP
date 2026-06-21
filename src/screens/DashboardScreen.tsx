@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Camera, BellDot, Menu, Calendar, ChevronLeft, AlertCircle } from "lucide-react";
 import { BottomNav } from "@/components/BottomNav";
 import { SideMenuDrawer } from "@/components/SideMenuDrawer";
@@ -104,13 +105,15 @@ type KpiCardProps = {
   subtitleColor?: string;
   valueColor?: string;
   tappable?: boolean;
+  onClick?: () => void;
 };
 
-function KpiCard({ title, value, subtitle, subtitleColor = "#737373", valueColor = "#262626", tappable = false }: KpiCardProps) {
+function KpiCard({ title, value, subtitle, subtitleColor = "#737373", valueColor = "#262626", tappable = false, onClick }: KpiCardProps) {
   return (
     // dir="ltr" so we control left/right explicitly
     <div
       dir="ltr"
+      onClick={onClick}
       style={{
         background: "white",
         borderRadius: 10,
@@ -255,6 +258,7 @@ const DATE_TABS = ["היום", "השבוע", "החודש", "12 חודשים"];
 // ── Main Screen ───────────────────────────────────────────────────────────────
 
 export function DashboardScreen() {
+  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<DashboardRange>("השבוע");
   const [dashData, setDashData] = useState<DashboardData>(() => generateDashboardMockData("השבוע"));
@@ -414,7 +418,7 @@ export function DashboardScreen() {
           <KpiCard title="מכירות מצטברות" {...dashData.accumulatedSales} />
           <KpiCard title="רווח עדכני"      {...dashData.currentProfit} />
           <KpiCard title="פוד קוסט"        {...dashData.foodCost} tappable />
-          <KpiCard title="ליבור קוסט"      {...dashData.laborCost} tappable />
+          <KpiCard title="ליבור קוסט"      {...dashData.laborCost} tappable onClick={() => navigate("/labor-cost")} />
           <KpiCard title="הוצאות קבועות"  {...dashData.fixedExpenses} tappable />
           <KpiCard title="הוצאות משתנות"  {...dashData.variableExpenses} tappable />
         </div>
