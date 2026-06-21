@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { UserRound, Expand, CircleCheck, BarChart2, Plus } from "lucide-react";
+import { Bell, Expand, CircleCheck, BarChart2, Plus } from "lucide-react";
 
 // Figma node 479-3985
 // Container: 360×106px, flex center, rounded 26 26 0 0
@@ -104,10 +104,10 @@ export function BottomNav() {
             position: "relative",
           }}
         >
-          {/* LEFT group: פרופיל + הוצאות */}
+          {/* LEFT group: התראות + הוצאות */}
           <div style={{ display: "flex", gap: 22, alignItems: "flex-start", flexShrink: 0 }}>
-            <NavItem Icon={UserRound} label="פרופיל" active={is("/profile")}  onClick={() => navigate("/profile")} />
-            <NavItem Icon={Expand}    label="הוצאות" active={is("/expenses")} onClick={() => navigate("/expenses")} />
+            <NavItem Icon={Bell}   label="התראות" active={is("/alerts")}  onClick={() => navigate("/alerts")} />
+            <NavItem Icon={Expand} label="הוצאות" active={is("/expenses")} onClick={() => navigate("/expenses")} />
           </div>
 
           {/* CENTER: FAB — 46px circle, vertically centered in 43px row, glow via box-shadow */}
