@@ -19,6 +19,8 @@ import { SettingsBusinessDetailsScreen } from "@/screens/SettingsBusinessDetails
 import { BusinessProfileScreen } from "@/screens/BusinessProfileScreen";
 import { ReceiptsScreen } from "@/screens/ReceiptsScreen";
 import { UploadCenterScreen } from "@/screens/UploadCenterScreen";
+import { GoalsScreen } from "@/screens/GoalsScreen";
+import { AddGoalScreen } from "@/screens/AddGoalScreen";
 
 export default function App() {
   return (
@@ -45,6 +47,8 @@ export default function App() {
         <Route path="/settings/business-profile" element={<BusinessProfileScreen />} />
         <Route path="/receipts" element={<ReceiptsScreen />} />
         <Route path="/uploads" element={<UploadCenterScreen />} />
+        <Route path="/goals" element={<GoalsScreen />} />
+        <Route path="/goals/new" element={<AddGoalScreen />} />
       </Routes>
     </BrowserRouter>
   );
