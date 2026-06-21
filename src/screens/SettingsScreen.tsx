@@ -3,7 +3,7 @@ import { X, ChevronLeft, CircleUser, Store, Mail, FileOutput, ReceiptText, LogOu
 
 const font = '"Google Sans", sans-serif';
 
-type SettingsRowProps = {
+type SettingsListItemProps = {
   icon: React.ElementType;
   label: string;
   subtitle?: string;
@@ -11,7 +11,7 @@ type SettingsRowProps = {
   danger?: boolean;
 };
 
-function SettingsRow({ icon: Icon, label, subtitle, onClick, danger }: SettingsRowProps) {
+function SettingsListItem({ icon: Icon, label, subtitle, onClick, danger }: SettingsListItemProps) {
   return (
     <button
       onClick={onClick}
@@ -27,9 +27,10 @@ function SettingsRow({ icon: Icon, label, subtitle, onClick, danger }: SettingsR
       }}
       dir="ltr"
     >
-      {/* LEFT: chevron */}
+      {/* LEFT: chevron in white circle */}
       <div style={{
-        width: 36, height: 36,
+        width: 36, height: 36, borderRadius: "50%",
+        background: "white",
         display: "flex", alignItems: "center", justifyContent: "center",
         flexShrink: 0,
       }}>
@@ -41,14 +42,14 @@ function SettingsRow({ icon: Icon, label, subtitle, onClick, danger }: SettingsR
         <p style={{
           fontFamily: font, fontSize: 14, fontWeight: 700,
           color: danger ? "#ef4444" : "#262626",
-          margin: 0, lineHeight: "16px",
+          margin: 0, lineHeight: "16px", letterSpacing: "-0.42px",
         }}>
           {label}
         </p>
         {subtitle && (
           <p style={{
             fontFamily: font, fontSize: 12, fontWeight: 400,
-            color: "#737373", margin: "2px 0 0", lineHeight: "16px",
+            color: "#262626", margin: "2px 0 0", lineHeight: "16px",
           }}>
             {subtitle}
           </p>
@@ -119,37 +120,37 @@ export function SettingsScreen() {
       {/* List */}
       <div style={{ flex: 1, padding: "20px var(--page-horizontal-padding)" }}>
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <SettingsRow
+          <SettingsListItem
             icon={CircleUser}
             label="פרופיל העסק"
             subtitle="הגדרות"
             onClick={() => navigate("/settings/business-profile")}
           />
-          <SettingsRow
+          <SettingsListItem
             icon={Store}
             label="פרטי העסק"
             subtitle="שם, סוג, מטבע"
             onClick={() => navigate("/settings/business-details")}
           />
-          <SettingsRow
+          <SettingsListItem
             icon={Mail}
             label="התראות"
             subtitle="פוש, מייל"
             onClick={() => navigate("/settings/notifications")}
           />
-          <SettingsRow
+          <SettingsListItem
             icon={FileOutput}
             label="דוחות וייצוא"
             subtitle="PDF , CSV"
             onClick={() => navigate("/settings/export")}
           />
-          <SettingsRow
+          <SettingsListItem
             icon={ReceiptText}
             label="קבלות"
             subtitle="קבלות ספקים להורדה"
             onClick={() => navigate("/receipts")}
           />
-          <SettingsRow
+          <SettingsListItem
             icon={LogOut}
             label="התנתק"
             danger
