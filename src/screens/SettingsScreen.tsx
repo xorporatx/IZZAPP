@@ -15,30 +15,30 @@ function SettingsListItem({ icon: Icon, label, subtitle, onClick, danger }: Sett
   return (
     <button
       onClick={onClick}
+      dir="rtl"
       style={{
         width: "100%",
-        display: "flex",
+        display: "grid",
+        gridTemplateColumns: "56px 1fr 24px",
+        columnGap: 20,
         alignItems: "center",
-        justifyContent: "space-between",
         padding: "12px 0",
         background: "none",
         border: "none",
         cursor: onClick ? "pointer" : "default",
       }}
-      dir="ltr"
     >
-      {/* LEFT: chevron in white circle */}
+      {/* col 1 (visual RIGHT in RTL): icon circle */}
       <div style={{
-        width: 36, height: 36, borderRadius: "50%",
-        background: "white",
+        width: 56, height: 56, borderRadius: "50%",
+        background: "#f5f5f5",
         display: "flex", alignItems: "center", justifyContent: "center",
-        flexShrink: 0,
       }}>
-        {onClick && <ChevronLeft style={{ width: 16, height: 16, color: "#a3a3a3" }} />}
+        <Icon style={{ width: 24, height: 24, color: danger ? "#ef4444" : "#262626" }} />
       </div>
 
-      {/* CENTER: text */}
-      <div style={{ flex: 1, textAlign: "right" }}>
+      {/* col 2: text */}
+      <div style={{ textAlign: "right" }}>
         <p style={{
           fontFamily: font, fontSize: 14, fontWeight: 700,
           color: danger ? "#ef4444" : "#262626",
@@ -56,14 +56,9 @@ function SettingsListItem({ icon: Icon, label, subtitle, onClick, danger }: Sett
         )}
       </div>
 
-      {/* RIGHT: icon circle */}
-      <div style={{
-        width: 36, height: 36, borderRadius: "50%",
-        background: "#f5f5f5",
-        display: "flex", alignItems: "center", justifyContent: "center",
-        flexShrink: 0,
-      }}>
-        <Icon style={{ width: 20, height: 20, color: danger ? "#ef4444" : "#262626" }} />
+      {/* col 3 (visual LEFT in RTL): chevron */}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+        {onClick && <ChevronLeft style={{ width: 16, height: 16, color: "#a3a3a3" }} />}
       </div>
     </button>
   );
