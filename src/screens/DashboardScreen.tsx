@@ -321,28 +321,8 @@ export function DashboardScreen() {
           </p>
         </div>
 
-        {/* RIGHT: bell + camera */}
+        {/* RIGHT: camera */}
         <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-          {/* Bell with dot */}
-          <div style={{ position: "relative" }}>
-            <button
-              style={{
-                width: 36, height: 36, borderRadius: 8,
-                display: "flex", alignItems: "center", justifyContent: "center",
-                background: "none", border: "none", cursor: "pointer",
-                boxShadow: "0px 1px 1px rgba(0,0,0,0.05)",
-              }}
-              aria-label="Notifications"
-            >
-              <BellDot style={{ width: 16, height: 16, color: "#262626" }} />
-            </button>
-            <span style={{
-              position: "absolute", top: 8, right: 8,
-              width: 4, height: 4, borderRadius: "50%",
-              background: "#dc2626",
-            }} />
-          </div>
-
           {/* Camera / logo */}
           <button
             style={{
