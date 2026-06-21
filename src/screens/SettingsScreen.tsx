@@ -30,11 +30,11 @@ function SettingsListItem({ icon: Icon, label, subtitle, onClick, danger }: Sett
     >
       {/* col 1 (visual RIGHT in RTL): icon circle */}
       <div style={{
-        width: 56, height: 56, borderRadius: "50%",
+        width: 36, height: 36, borderRadius: "50%",
         background: "#f5f5f5",
         display: "flex", alignItems: "center", justifyContent: "center",
       }}>
-        <Icon style={{ width: 24, height: 24, color: danger ? "#ef4444" : "#262626" }} />
+        <Icon style={{ width: 20, height: 20, color: danger ? "#ef4444" : "#262626" }} />
       </div>
 
       {/* col 2: text */}
