@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Menu, ArrowDown, Calendar, Download } from "lucide-react";
 import { BottomNav } from "@/components/BottomNav";
 import { SideMenuDrawer } from "@/components/SideMenuDrawer";
@@ -68,7 +67,6 @@ function ReceiptRow({ name, date, amount }: { name: string; date: string; amount
 
 export function ReceiptsScreen() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const navigate = useNavigate();
 
   const headCell: React.CSSProperties = {
     height: 40,
